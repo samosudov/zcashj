@@ -11,7 +11,7 @@
     <module>core</module>
     <module>examples</module>
     <module>tools</module>
-    <module>wallettemplate</module>
+    <!--<module>wallettemplate</module>-->
   </modules>
 
   <parent>
