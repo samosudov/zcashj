@@ -45,7 +45,7 @@ public class Address extends VersionedChecksummedBytes {
     /**
      * An address is a RIPEMD160 hash of a public key, therefore is always 160 bits or 20 bytes.
      */
-    public static final int LENGTH = 20;
+    public static final int LENGTH = 21;
 
     private transient NetworkParameters params;
 
