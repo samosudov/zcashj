@@ -19,6 +19,7 @@ package org.bitcoinj.core;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 import com.google.common.base.Objects;
@@ -39,10 +40,10 @@ public class VersionedChecksummedBytes implements Serializable, Cloneable, Compa
 
     protected VersionedChecksummedBytes(String encoded) throws AddressFormatException {
         byte[] versionAndDataBytes = Base58.decodeChecked(encoded);
-        byte versionByte = versionAndDataBytes[0];
-        version = versionByte & 0xFF;
-        bytes = new byte[versionAndDataBytes.length - 1];
-        System.arraycopy(versionAndDataBytes, 1, bytes, 0, versionAndDataBytes.length - 1);
+        byte versionByte[] = {versionAndDataBytes[0], versionAndDataBytes[1]};
+        version = ByteBuffer.wrap(versionByte).getInt();
+        bytes = new byte[versionAndDataBytes.length - 2];
+        System.arraycopy(versionAndDataBytes, 2, bytes, 0, versionAndDataBytes.length - 2);
     }
 
     protected VersionedChecksummedBytes(int version, byte[] bytes) {
